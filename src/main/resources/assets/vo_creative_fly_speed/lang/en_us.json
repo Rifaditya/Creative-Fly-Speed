@@ -1,0 +1,7 @@
+{
+    "gamerule.category.vo_creative_fly_speed.fly_speed": "Creative Fly Speed",
+    "gamerule.minecraft.vo_creative_fly_speed": "Creative Flight Speed Multiplier (%)",
+    "gamerule.minecraft.vo_creative_fly_speed.description": "Multiplier for the player's flying speed while in Creative mode. Default is 1000 (1.0x). Use higher values like 2500 for 2.5x speed. Takes effect instantly for Creative players.",
+    "gamerule.minecraft.vo_spectator_fly_speed": "Spectator Flight Speed Multiplier (%)",
+    "gamerule.minecraft.vo_spectator_fly_speed.description": "Multiplier for flying speed in Spectator mode. Default is 1000 (1.0x). Slow it down for cinematic precision or crank it up to traverse your world at high velocity!"
+}
