@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 <!-- Banner placeholder — replace URL when banner is uploaded -->
 <!-- ![Creative Fly Speed Banner](https://example.com/banner.jpg) -->
@@ -16,53 +16,49 @@
 
 **No Backports:** This mod targets **Minecraft 26.1+** (Snapshot 8). Older versions are unsupported.
 
-> **Fly at the speed YOU want.**
+> **Fly at the speed YOU want. No limits, no friction.**
 
-Tired of Creative mode flight feeling too slow for your massive builds — or too fast for precision detail work? **Creative Fly Speed** is a single-purpose, zero-bloat mod that lets you dial in exactly how fast you fly, per world, via a GameRule.
+**Creative Fly Speed** gives you surgical control over flight dynamics. Tired of the sluggish vanilla flight speed when building massive structures? Or maybe you need slow, cinematic precision in Spectator mode? It’s all just a GameRule away. 
 
-Part of the **Vanilla Outsider** collection.
+Part of the **Vanilla Outsider Collection** — mods that refine the vanilla experience with modern standards.
 
 ---
 
 ## ✨ Features
 
-### ⚡ Adjustable Creative Speed
+### ⚡ Creative Flight Control
+Adjust how fast you soar through your builds. 
+- **`creativeFlySpeed`** GameRule: Scale your flight speed using permille units.
+- **Precision Scaling**: `1000` is the vanilla default (1.0x). Want to go faster? Set it to `2500` for 2.5x speed.
+- **Hot-Swappable**: Settings apply every tick manually. No need to relog or restart the server.
 
-Scale Creative flight to anything you need.
-
-- `/gamerule creativeFlySpeed 2500` → 2.5x for large terrain projects
-- `/gamerule creativeFlySpeed 500` → 0.5x for precision block placement
-- Any value. Any time. Instant effect.
-
-### 👁️ Adjustable Spectator Speed
-
-Spectator mode gets its own independent rule.
-
-- Perfect for cinematic flythroughs at slow, smooth speeds.
-- Or blast across your world at 10x for rapid reviews.
-
-### ⚙️ Pure GameRules
-
-No config files. No menus. No restarts. Everything lives in the **Edit Game Rules** screen or `/gamerule` command.
-
-- `creativeFlySpeed` — Creative mode multiplier (permille, default `1000` = vanilla)
-- `spectatorFlySpeed` — Spectator mode multiplier (permille, default `1000` = vanilla)
-
-**Permille scale**: `1000 = 1.0x`, `2500 = 2.5x`, `10000 = 10x`
-
-### 🖥️ Server-Side Only
-
-Clients do not need the mod installed. Install it on your server and all Creative/Spectator players benefit automatically.
+### 🎥 Spectator Precision
+Traverse your world with ease or capture the perfect shot.
+- **`spectatorFlySpeed`** GameRule: Independent multiplier for Spectator mode.
+- **Smooth Traversal**: Crank it up to `10000` (10x) to scout terrains, or drop it to `500` (0.5x) for steady camera work.
 
 ---
 
 ## 📋 Quick Start
 
+```sql
+/gamerule creativeFlySpeed 2500      → 2.5x Creative speed
+/gamerule spectatorFlySpeed 500      → 0.5x Spectator speed
+/gamerule creativeFlySpeed 1000      → Reset to vanilla
 ```
-/gamerule creativeFlySpeed 2500    → 2.5x Creative speed
-/gamerule spectatorFlySpeed 500    → 0.5x Spectator speed (cinematic)
-/gamerule creativeFlySpeed 1000    → Reset to vanilla
-```
+
+---
+
+## ⚙️ Config
+
+
+> [!IMPORTANT]
+> **Config vs. In-Game GameRules:**
+> The global configuration file only defines **default values for new worlds** at creation time.
+> If you have **already created/opened a world**, changing the config file will have no effect. You must change the settings in-game using the **Edit Game Rules** UI screen or the /gamerule command.
+No messy config files. Everything lives in the **Edit Game Rules** screen or via standard commands.
+- **Instant Sync**: Changes are pushed to all players in the corresponding game mode immediately.
+- **Server-Side Only**: This mod is purely server-side. Clients don't need it to fly at high speeds!
 
 ---
 
@@ -70,8 +66,7 @@ Clients do not need the mod installed. Install it on your server and all Creativ
 
 1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
 2. Install **[DasikLibrary](https://modrinth.com/mod/dasik-library)**.
-3. Download `creative-fly-speed-1.0.0+build.1.jar` and place it in your `mods` folder.
-4. Launch and adjust speeds via GameRules — defaults are vanilla-identical!
+3. Download the latest JAR and place it in your `mods` folder.
 
 ---
 
@@ -81,9 +76,10 @@ If you enjoy the **Vanilla Outsider** collection, consider fueling the next upda
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Me-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/dasikigaijin/tip)
 [![SocioBuzz](https://img.shields.io/badge/SocioBuzz-Local_Support-7BB32E?style=for-the-badge)](https://sociabuzz.com/dasikigaijin/tribe)
+[![Saweria](https://img.shields.io/badge/Saweria-Local_Support-FFA500?style=for-the-badge)](https://saweria.co/DasikIgaijinn)
 
 > [!NOTE]
-> **Indonesian Users:** SocioBuzz supports local payment methods (Gopay, OVO, Dana, etc.)!
+> **Indonesian Users:** SocioBuzz and Saweria support local payment methods (Gopay, OVO, Dana, etc.) if you want to support me without using PayPal/Ko-fi!
 
 ---
 

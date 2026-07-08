@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 <!-- Banner placeholder — replace URL when banner is uploaded -->
 <!-- ![Creative Fly Speed Banner](https://media.forgecdn.net/attachments/XXXX/XXXX/banner.jpg) -->
@@ -50,7 +50,13 @@ Traverse your world with ease or capture the perfect shot.
 ---
 
 ## ⚙️ Config
+
 
+<blockquote class="warning">
+<strong>âš ï¸ Important: Config vs. In-Game GameRules</strong><br>
+The global configuration file only defines <strong>default values for new worlds</strong> at creation time.
+If you have <strong>already created/opened a world</strong>, changing the config file will have no effect. You must change the settings in-game using the <strong>Edit Game Rules</strong> UI screen or the <code>/gamerule</code> command.
+</blockquote>
 No messy config files. Everything lives in the **Edit Game Rules** screen or via standard commands.
 - **Instant Sync**: Changes are pushed to all players in the corresponding game mode immediately.
 - **Server-Side Only**: This mod is purely server-side. Clients don't need it to fly at high speeds!
@@ -71,9 +77,10 @@ If you enjoy the **Vanilla Outsider** collection, consider fueling the next upda
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Me-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/dasikigaijin/tip)
 [![SocioBuzz](https://img.shields.io/badge/SocioBuzz-Local_Support-7BB32E?style=for-the-badge)](https://sociabuzz.com/dasikigaijin/tribe)
+[![Saweria](https://img.shields.io/badge/Saweria-Local_Support-FFA500?style=for-the-badge)](https://saweria.co/DasikIgaijinn)
 
 > [!NOTE]
-> **Indonesian Users:** SocioBuzz supports local payment methods (Gopay, OVO, Dana, etc.) if you want to support me without using PayPal/Ko-fi!
+> **Indonesian Users:** SocioBuzz and Saweria support local payment methods (Gopay, OVO, Dana, etc.) if you want to support me without using PayPal/Ko-fi!
 
 ---
 
