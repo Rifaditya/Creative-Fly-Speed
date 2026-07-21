@@ -14,7 +14,7 @@
 
 # 🚀 Creative Fly Speed
 
-**No Backports:** This mod targets **Minecraft 26.1+** (Snapshot 8). Older versions are unsupported.
+**Active Version Policy:** I build **1 JAR for 1 Version**. I only update and maintain the latest active Minecraft version (e.g. when 26.3 is released, 26.2 is retired). No backports or legacy version maintenance. Please do not ask.
 
 > **Fly at the speed YOU want. No limits, no friction.**
 
@@ -50,7 +50,7 @@ Traverse your world with ease or capture the perfect shot.
 ---
 
 ## ⚙️ Config
-
+
 
 > [!IMPORTANT]
 > **Config vs. In-Game GameRules:**
@@ -94,9 +94,9 @@ If you enjoy the **Vanilla Outsider** collection, consider fueling the next upda
 ---
 
 > [!IMPORTANT]
-> **Modpack Permissions:** You are free to include this mod in modpacks, **provided the modpack is hosted on the same platform** (e.g. Modrinth).
->
-> **Cross-platform distribution is not permitted.**
+> **📦 Modpack Permissions & Distribution:** You are free to include this mod in any modpack on any platform. However, the mod itself must be downloaded from its official distribution pages on **Modrinth** or **CurseForge**. Re-uploading or redistributing the mod jar file to third-party sites is strictly prohibited unless explicitly permitted by the creator.
+> 
+> **License & Forks:** Since the source code is licensed under **GNU GPLv3**, you are fully permitted to fork the repository, make modifications, build your own versions, and distribute them under the terms of the GPLv3. The prohibition on third-party redistribution applies exclusively to the official compiled releases/jars published by the original creator (Dasik/Rifaditya). Forks must be published as distinct projects, not direct re-uploads of official builds.
 
 ---
 

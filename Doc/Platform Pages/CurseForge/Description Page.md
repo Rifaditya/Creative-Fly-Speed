@@ -14,7 +14,7 @@
 
 # 🚀 Creative Fly Speed
 
-**No Backports:** This mod targets **Minecraft 26.1+** (Snapshot 8). Older versions are unsupported.
+**Active Version Policy:** I build **1 JAR for 1 Version**. I only update and maintain the latest active Minecraft version (e.g. when 26.3 is released, 26.2 is retired). No backports or legacy version maintenance. Please do not ask.
 
 > **Fly at the speed YOU want. No limits, no friction.**
 
@@ -50,10 +50,10 @@ Traverse your world with ease or capture the perfect shot.
 ---
 
 ## ⚙️ Config
-
+
 
 <blockquote class="warning">
-<strong>âš ï¸ Important: Config vs. In-Game GameRules</strong><br>
+<strong>⚠️ Important: Config vs. In-Game GameRules</strong><br>
 The global configuration file only defines <strong>default values for new worlds</strong> at creation time.
 If you have <strong>already created/opened a world</strong>, changing the config file will have no effect. You must change the settings in-game using the <strong>Edit Game Rules</strong> UI screen or the <code>/gamerule</code> command.
 </blockquote>
@@ -79,8 +79,7 @@ If you enjoy the **Vanilla Outsider** collection, consider fueling the next upda
 [![SocioBuzz](https://img.shields.io/badge/SocioBuzz-Local_Support-7BB32E?style=for-the-badge)](https://sociabuzz.com/dasikigaijin/tribe)
 [![Saweria](https://img.shields.io/badge/Saweria-Local_Support-FFA500?style=for-the-badge)](https://saweria.co/DasikIgaijinn)
 
-> [!NOTE]
-> **Indonesian Users:** SocioBuzz and Saweria support local payment methods (Gopay, OVO, Dana, etc.) if you want to support me without using PayPal/Ko-fi!
+<blockquote><strong>🇮🇩 Indonesian Users:</strong> SocioBuzz and Saweria support local payment methods (Gopay, OVO, Dana, etc.) if you want to support me without using PayPal/Ko-fi!</blockquote>
 
 ---
 
@@ -91,6 +90,16 @@ If you enjoy the **Vanilla Outsider** collection, consider fueling the next upda
 | **Creator** | **Rifaditya** (Dasik) |
 | **Collection** | Vanilla Outsider |
 | **License** | GPLv3 |
+
+---
+
+<blockquote>
+    <strong>📦 Modpack Permissions & Distribution:</strong><br>
+    You are free to include this mod in any modpack on any platform. However, the mod itself must be downloaded from its official distribution pages on <strong>Modrinth</strong> or <strong>CurseForge</strong>. Re-uploading or redistributing the mod jar file to third-party sites is strictly prohibited unless explicitly permitted by the creator.
+    <br><br>
+    <strong>License & Forks:</strong><br>
+    Since the source code is licensed under <strong>GNU GPLv3</strong>, you are fully permitted to fork the repository, make modifications, build your own versions, and distribute them under the terms of the GPLv3. The prohibition on third-party redistribution applies exclusively to the official compiled releases/jars published by the original creator (Dasik/Rifaditya). Forks must be published as distinct projects, not direct re-uploads of official builds.
+</blockquote>
 
 ---
 
