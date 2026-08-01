@@ -65,3 +65,7 @@ build_log_utf8.txt
 build_log.txt
 build_log_utf8.txt
 *log*
+
+Archive/
+Archive Jar of all versions/
+*.jar
