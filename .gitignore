@@ -69,3 +69,4 @@ build_log_utf8.txt
 Archive/
 Archive Jar of all versions/
 *.jar
+deps.txt
