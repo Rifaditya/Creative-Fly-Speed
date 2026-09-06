@@ -65,8 +65,16 @@ build_log_utf8.txt
 build_log.txt
 build_log_utf8.txt
 *log*
+*log*
 
 Archive/
 Archive Jar of all versions/
 *.jar
 deps.txt
+
+# Platform Publisher API Token Security Vault
+*platform_tokens.json
+.agents/config/platform_tokens.json
+
+# Local Wiki Git Mirror
+.wiki/
