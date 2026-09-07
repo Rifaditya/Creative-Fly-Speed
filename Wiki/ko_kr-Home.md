@@ -20,8 +20,8 @@
 
 | 대상 마인크래프트 버전 | 릴리스 앵커 | 도구 체인 | 상태 | 바로가기 |
 | :--- | :--- | :--- | :---: | :--- |
-| **Minecraft 26.3** | `1.0.0+26.3` | Fabric Loader `>=0.19.3` / Java 25 | 🟢 최신 메인 | [[👉 MC 26.3 위키 포털|26.3-Home]] |
-| **Minecraft 26.2** | `1.0.0+26.2` | Fabric Loader `>=0.16.10` / Java 25 | 🟡 패리티 버전 | [[👉 MC 26.2 위키 포털|26.2-Home]] |
+| **Minecraft 26.3** | `1.0.0+26.3` | Fabric Loader `>=0.19.3` / Java 25 | 🟢 최신 메인 | [[👉 MC 26.3 위키 포털|ko_kr-26.3-Home]] |
+| **Minecraft 26.2** | `1.0.0+26.2` | Fabric Loader `>=0.16.10` / Java 25 | 🟡 패리티 버전 | [[👉 MC 26.2 위키 포털|ko_kr-26.2-Home]] |
 
 > [!NOTE]
 > 본 모드의 **1 Jar 1 Version Policy**에 따라 각 버전 브랜치는 독립적인 의존성 매핑을 갖춘 완전한 독립 빌드로 제작됩니다.
@@ -30,17 +30,17 @@
 
 ## 🌟 핵심 하위 시스템 개요
 
-- **[[비행 속도 역학|26.3-Flight-Speed-Kinematics]]**:
+- **[[비행 속도 역학|ko_kr-26.3-Flight-Speed-Kinematics]]**:
   - 퍼밀(천분율) 계산 공식: $S_{\text{fly}} = 0.05 \times \frac{P}{1000}$ 블록/틱.
   - 전력 질주 가속 지원: 비행 중 질주 시 바닐라 $1.4\times$ 복합 가속.
   - 부동소수점 드리프트 방지 ($10^{-6}\text{ F}$)로 불필요한 네트워크 패킷 전송을 방지합니다 (안정 상태 시 0패킷).
   - 서바이벌 및 어드벤처 모드는 절대 간섭하지 않고 즉시 안전하게 우회합니다.
-- **[[설정 및 게임룰|26.3-Configuration-and-GameRules]]**:
+- **[[설정 및 게임룰|ko_kr-26.3-Configuration-and-GameRules]]**:
   - DasikLibrary 기반 동적 카테고리 등록 `vo_creative_fly_speed:fly_speed`.
   - `vo_creative_fly_speed`: 크리에이티브 모드 비행 배율 (기본값: `1000` = $1.0\times$).
   - `vo_spectator_fly_speed`: 관전 모드 비행 배율 (기본값: `1000` = $1.0\times$).
   - `1` ~ `100000` 범위 지원, `level.dat`에 네이티브 자동 저장.
-- **[[아키텍처 및 믹스인|26.3-Architecture-and-Mixins]]**:
+- **[[아키텍처 및 믹스인|ko_kr-26.3-Architecture-and-Mixins]]**:
   - `ServerPlayer.tick()`의 `@At("HEAD")`에 대한 정밀 바이트코드 주입.
   - 믹스인 순수성 준수: 믹스인 내부 비즈니스 로직을 배제하고 `FlySpeedLogic`에 전체 위임.
   - $O(1)$ 연산 효율 및 힙(Heap) 메모리 할당 0 바이트 달성.
@@ -49,9 +49,9 @@
 
 ## 📚 개발자 가이드 및 문제 해결
 
-- [[버전 호환성 매트릭스|Version-Compatibility]]: Loom, Fabric Loader, Parchment 및 Java 25 사양.
-- [[문제 해결 및 FAQ|Troubleshooting-and-FAQ]]: 드리프트 진단, 패킷 동기화 및 월드 저장 문제 해결.
-- [[개발 환경 설정 및 빌드 가이드|Developer-Setup-and-Building]]: Gradle 9.3+ 빌드 지침.
+- [[버전 호환성 매트릭스|ko_kr-Version-Compatibility]]: Loom, Fabric Loader, Parchment 및 Java 25 사양.
+- [[문제 해결 및 FAQ|ko_kr-Troubleshooting-and-FAQ]]: 드리프트 진단, 패킷 동기화 및 월드 저장 문제 해결.
+- [[개발 환경 설정 및 빌드 가이드|ko_kr-Developer-Setup-and-Building]]: Gradle 9.3+ 빌드 지침.
 
 ---
 

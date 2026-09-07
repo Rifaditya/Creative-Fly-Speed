@@ -20,8 +20,8 @@ Seleccione su versión de Minecraft para acceder al árbol de documentación ded
 
 | Versión Objetivo | Anclaje de Versión | Herramientas | Estado | Portal Directo |
 | :--- | :--- | :--- | :---: | :--- |
-| **Minecraft 26.3** | `1.0.0+26.3` | Fabric Loader `>=0.19.3` / Java 25 | 🟢 Versión Actual | [[👉 Entrar a la Wiki de MC 26.3|26.3-Home]] |
-| **Minecraft 26.2** | `1.0.0+26.2` | Fabric Loader `>=0.16.10` / Java 25 | 🟡 Anclaje de Paridad | [[👉 Entrar a la Wiki de MC 26.2|26.2-Home]] |
+| **Minecraft 26.3** | `1.0.0+26.3` | Fabric Loader `>=0.19.3` / Java 25 | 🟢 Versión Actual | [[👉 Entrar a la Wiki de MC 26.3|es_es-26.3-Home]] |
+| **Minecraft 26.2** | `1.0.0+26.2` | Fabric Loader `>=0.16.10` / Java 25 | 🟡 Anclaje de Paridad | [[👉 Entrar a la Wiki de MC 26.2|es_es-26.2-Home]] |
 
 > [!NOTE]
 > Bajo la política **1 Jar 1 Version Policy**, cada rama de versión se construye como un artefacto soberano e independiente con sus asignaciones de dependencias.
@@ -30,17 +30,17 @@ Seleccione su versión de Minecraft para acceder al árbol de documentación ded
 
 ## 🌟 Resumen de Subsistemas Principales
 
-- **[[Cinemática de velocidad de vuelo|26.3-Flight-Speed-Kinematics]]**:
+- **[[Cinemática de velocidad de vuelo|es_es-26.3-Flight-Speed-Kinematics]]**:
   - Cálculo de velocidad por permille: $S_{\text{fly}} = 0.05 \times \frac{P}{1000}$ bloques/tick.
   - Multiplicador de sprint compuesto ($1.4\times$).
   - Filtro de deriva en coma flotante ($10^{-6}\text{ F}$) para evitar saturación de paquetes en red.
   - Operación segura: no interfiere con los modos Supervivencia ni Aventura.
-- **[[Ajustes y GameRules|26.3-Configuration-and-GameRules]]**:
+- **[[Ajustes y GameRules|es_es-26.3-Configuration-and-GameRules]]**:
   - Registro dinámico bajo la categoría `vo_creative_fly_speed:fly_speed` mediante DasikLibrary.
   - `vo_creative_fly_speed`: Multiplicador en modo Creativo (por defecto `1000` = $1.0\times$).
   - `vo_spectator_fly_speed`: Multiplicador en modo Espectador (por defecto `1000` = $1.0\times$).
   - Rango completo de `1` a `100000`, persistido de forma nativa en `level.dat`.
-- **[[Arquitectura y Mixins|26.3-Architecture-and-Mixins]]**:
+- **[[Arquitectura y Mixins|es_es-26.3-Architecture-and-Mixins]]**:
   - Inyección limpia en `ServerPlayer.tick()` en `@At("HEAD")`.
   - Cero lógica de negocio en el Mixin: delegación total en `FlySpeedLogic`.
   - Rendimiento $O(1)$ sin asignación de memoria dinámica (heap).
@@ -49,9 +49,9 @@ Seleccione su versión de Minecraft para acceder al árbol de documentación ded
 
 ## 📚 Documentación General y Solución de Problemas
 
-- [[Matriz de compatibilidad de versiones|Version-Compatibility]]: Entornos de compilación Loom, Fabric Loader y Java 25.
-- [[Solución de problemas y FAQ|Troubleshooting-and-FAQ]]: Guía de resolución de desincronización, paquetes y persistencia.
-- [[Guía de compilación para desarrolladores|Developer-Setup-and-Building]]: Instrucciones de compilación con Gradle 9.3+.
+- [[Matriz de compatibilidad de versiones|es_es-Version-Compatibility]]: Entornos de compilación Loom, Fabric Loader y Java 25.
+- [[Solución de problemas y FAQ|es_es-Troubleshooting-and-FAQ]]: Guía de resolución de desincronización, paquetes y persistencia.
+- [[Guía de compilación para desarrolladores|es_es-Developer-Setup-and-Building]]: Instrucciones de compilación con Gradle 9.3+.
 
 ---
 

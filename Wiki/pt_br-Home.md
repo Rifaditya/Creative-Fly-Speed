@@ -20,8 +20,8 @@ Selecione sua versão alvo do Minecraft para acessar a árvore de documentação
 
 | Versão Alvo | Lançamento | Ferramentas | Status | Portal Direto |
 | :--- | :--- | :--- | :---: | :--- |
-| **Minecraft 26.3** | `1.0.0+26.3` | Fabric Loader `>=0.19.3` / Java 25 | 🟢 Atual Principal | [[👉 Entrar na Wiki do MC 26.3|26.3-Home]] |
-| **Minecraft 26.2** | `1.0.0+26.2` | Fabric Loader `>=0.16.10` / Java 25 | 🟡 Paridade | [[👉 Entrar na Wiki do MC 26.2|26.2-Home]] |
+| **Minecraft 26.3** | `1.0.0+26.3` | Fabric Loader `>=0.19.3` / Java 25 | 🟢 Atual Principal | [[👉 Entrar na Wiki do MC 26.3|pt_br-26.3-Home]] |
+| **Minecraft 26.2** | `1.0.0+26.2` | Fabric Loader `>=0.16.10` / Java 25 | 🟡 Paridade | [[👉 Entrar na Wiki do MC 26.2|pt_br-26.2-Home]] |
 
 > [!NOTE]
 > Sob a política **1 Jar 1 Version Policy**, cada versão é construída como um artefato soberano e autônomo com mapeamentos dedicados.
@@ -30,17 +30,17 @@ Selecione sua versão alvo do Minecraft para acessar a árvore de documentação
 
 ## 🌟 Visão Geral dos Subsistemas
 
-- **[[Cinemática de Velocidade de Voo|26.3-Flight-Speed-Kinematics]]**:
+- **[[Cinemática de Velocidade de Voo|pt_br-26.3-Flight-Speed-Kinematics]]**:
   - Cálculo de velocidade por permille: $S_{\text{fly}} = 0.05 \times \frac{P}{1000}$ blocos/tick.
   - Multiplicador de sprint: aceleração adicional de $1.4\times$ durante o voo correndo.
   - Proteção de deriva em ponto flutuante ($10^{-6}\text{ F}$) para eliminar tráfego de rede desnecessário.
   - Totalmente seguro: modos Sobrevivência e Aventura são completamente intocados.
-- **[[Configuração & GameRules|26.3-Configuration-and-GameRules]]**:
+- **[[Configuração & GameRules|pt_br-26.3-Configuration-and-GameRules]]**:
   - Registro de categoria dinâmica `vo_creative_fly_speed:fly_speed` via DasikLibrary.
   - `vo_creative_fly_speed`: Multiplicador de voo Criativo (padrão `1000` = $1.0\times$).
   - `vo_spectator_fly_speed`: Multiplicador de voo Espectador (padrão `1000` = $1.0\times$).
   - Intervalo irrestrito de `1` a `100000`, persistido nativamente em `level.dat`.
-- **[[Arquitetura & Mixins|26.3-Architecture-and-Mixins]]**:
+- **[[Arquitetura & Mixins|pt_br-26.3-Architecture-and-Mixins]]**:
   - Injeção precisa em `ServerPlayer.tick()` no ponto `@At("HEAD")`.
   - Zero lógica de negócios no Mixin: delegação total ao utilitário `FlySpeedLogic`.
   - Eficiência $O(1)$ sem alocações de memória no heap.
@@ -49,9 +49,9 @@ Selecione sua versão alvo do Minecraft para acessar a árvore de documentação
 
 ## 📚 Documentação Geral & Solução de Problemas
 
-- [[Matriz de Compatibilidade|Version-Compatibility]]: Especificações de Loom, Fabric Loader e Java 25.
-- [[Solução de Problemas & Perguntas Frequentes (FAQ)|Troubleshooting-and-FAQ]]: Resolução de travamentos, pacotes e salvamento.
-- [[Guia de Compilação para Desenvolvedores|Developer-Setup-and-Building]]: Compilação via Gradle 9.3+.
+- [[Matriz de Compatibilidade|pt_br-Version-Compatibility]]: Especificações de Loom, Fabric Loader e Java 25.
+- [[Solução de Problemas & Perguntas Frequentes (FAQ)|pt_br-Troubleshooting-and-FAQ]]: Resolução de travamentos, pacotes e salvamento.
+- [[Guia de Compilação para Desenvolvedores|pt_br-Developer-Setup-and-Building]]: Compilação via Gradle 9.3+.
 
 ---
 

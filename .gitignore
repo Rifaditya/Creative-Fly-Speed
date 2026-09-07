@@ -78,3 +78,7 @@ deps.txt
 
 # Local Wiki Git Mirror
 .wiki/
+
+desktop.ini
+*/desktop.ini
+**/desktop.ini
