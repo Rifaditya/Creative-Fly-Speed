@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "package": "net.vanillaoutsider.vo_creative_fly_speed.mixin",
+    "compatibilityLevel": "JAVA_25",
+    "mixins": [
+        "ServerPlayerMixin"
+    ],
+    "client": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
