@@ -14,6 +14,9 @@ repositories {
     mavenLocal()
     maven { url = "https://maven.fabricmc.net/" }
     mavenCentral()
+    flatDir {
+        dirs 'e:/Minecraft Project/DasikLibrary-Rebuilt/Archive/builds'
+    }
 }
 
 dependencies {
@@ -22,7 +25,9 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    implementation "net.dasik.social:dasik-library:${project.dasik_library_version}"
+    implementation "net.dasik.social:dasik-library:1.9.2"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 }
 
 processResources {
@@ -50,6 +55,10 @@ java {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 25
+}
+
+test {
+    useJUnitPlatform()
 }
 
 jar {
