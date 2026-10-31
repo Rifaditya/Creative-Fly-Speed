@@ -1,54 +1,47 @@
-# 📋 Matriz de Compatibilidade de Versões e Ferramentas
+# 📋 Version Compatibility & Matrix
 
-🌐 **Languages**: [[🇺🇸 English|Home]] | [[🇨🇳 简体中文|zh_cn-Home]] | [[🇭🇰 繁體中文|zh_tw-Home]] | [[🇷🇺 Русский|ru_ru-Home]] | [[🇪🇸 Español|es_es-Home]] | [[🇩🇪 Deutsch|de_de-Home]] | [[🇫🇷 Français|fr_fr-Home]] | [[🇧🇷 Português|pt_br-Home]] | [[🇯🇵 日本語|ja_jp-Home]] | [[🇮🇩 Bahasa Indonesia|id_id-Home]] | [[🇰🇷 한국어|ko_kr-Home]]
-
-> 📌 **Isenção de Responsabilidade do Código-Fonte do Repositório**: A documentação nesta Wiki reflete o **estado atual do código-fonte no repositório**, que pode incluir commits recentes não lançados ou recursos de desenvolvimento à frente das versões públicas no CurseForge e Modrinth.
+> 📌 **Isenção de responsabilidade do código-fonte do repositório**: A documentação nesta Wiki reflete o **estado atual do código-fonte no repositório**, que pode incluir commits recentes não lançados ou recursos de desenvolvimento anteriores às versões públicas no CurseForge e Modrinth.
 
 ---
 
-## 🏛️ A Política "1 Jar 1 Versão"
+## 1. Supported Minecraft Version Anchors
 
-O **Creative Fly Speed** segue rigorosamente a **Política 1 Jar 1 Versão**:
-- **Zero JARs universais híbridos**: cada âncora do Minecraft é desenvolvida e compilada como um subprojeto determinístico independente.
-- **Subprojetos Dedicados**:
-  - `Creative Fly Speed/` (âncora Minecraft 26.2)
-  - `Creative Fly Speed v26.3/Creative Fly Speed 26.3/` (âncora Minecraft 26.3)
-- **Exceção de biblioteca universal**: O único módulo com suporte multiversão é a `DasikLibrary`.
+Creative Fly Speed maintains strict parity across **6 version anchors** under the **1 Jar 1 Version Policy**. Each anchor is built, tested, and packaged independently:
 
----
-
-## 📊 Complete Technical Compatibility Matrix
-
-| Minecraft Anchor | Mod Release Target | Fabric Loader | Fabric API | Java Runtime | Mappings / Parchment | DasikLibrary Version | Release Status |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Minecraft 26.3** | `1.0.0+26.3` | `>=0.19.3` | `0.156.1+26.3` | **Java 25** (`>=25`) | Yarn `26.3-snapshot-6` / Parchment `2026.01.22` | `>=1.8.36` | 🟢 **Active Current** |
-| **Minecraft 26.2** | `1.0.0+26.2` | `>=0.16.10` | `0.142.1+26.1` | **Java 25** (`>=25`) | Yarn `26.1-snapshot-11+build.1` / Parchment `2026.01.22` | `>=1.6.9+build.14` | 🟡 **Parity Anchor** |
+| Minecraft Version | Release Tag | Fabric Loader | Java Requirement | Loom Toolchain | Branch / Subproject | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :---: |
+| **MC 26.3** | `1.0.0+26.3` | `>=0.19.5` | Java 25 | Loom `1.11` | `Creative Fly Speed v26.3` | 🟢 Active Lead |
+| **MC 26.2** | `1.0.0+26.2` | `>=0.19.4` | Java 25 | Loom `1.11` | `Creative Fly Speed v26.2` | 🟡 Parity Anchor |
+| **MC 26.1.2** | `1.0.0+26.1.2` | `>=0.19.3` | Java 25 | Loom `1.11` | `Creative Fly Speed v26.1.2` | 🟡 Parity Anchor |
+| **MC 1.21.11** | `1.0.0+1.21.11` | `>=0.16.5` | Java 21 | Loom `1.10` | `Creative Fly Speed v1.21.11` | 🔵 Transitional Anchor |
+| **MC 1.21.1** | `1.0.0+1.21.1` | `>=0.16.0` | Java 21 | Loom `1.10` | `Creative Fly Speed v1.21.1` | 🟠 Legacy Anchor |
+| **MC 1.20.1** | `1.0.0+1.20.1` | `>=0.15.11` | Java 17 | Loom `1.10` | `Creative Fly Speed v1.20.1` | 🟣 Master Legacy |
 
 ---
 
-## 🧩 Dependencies & Ecosystem Integration
+## 2. Java Runtime Compatibility
 
-| Dependency | Dependency ID | Required Bounds | Side Scope | Purpose |
-| :--- | :--- | :--- | :---: | :--- |
-| **Fabric Loader** | `fabricloader` | `>=0.16.9` | Client & Server | Mod loading environment and Mixin transformation service |
-| **Fabric API** | `fabric-api` | `*` | Client & Server | Core lifecycle hooks and server networking event pipelines |
-| **Java Runtime** | `java` | `>=25` | Client & Server | Modern JVM features (Records, Switch pattern matching, Unnamed variables) |
-| **DasikLibrary** | `dasiklibrary` | `>=1.6.9` (26.2) / `>=1.8.36` (26.3) | Client & Server | Dynamic GameRule registration (`DynamicGameRuleManager`) and category binding |
+- **Java 25 (Modern Sovereign Anchors)**: Targeted by `26.1.2`, `26.2`, and `26.3`. Leverages modern JVM optimizations, compact records, and virtual thread ergonomics.
+- **Java 21 (Transitional & Modern Legacy)**: Targeted by `1.21.1` and `1.21.11`.
+- **Java 17 (Legacy Master Anchor)**: Targeted by `1.20.1` for maximum modpack backward compatibility.
 
 ---
 
-## 🔒 Dedicated Server & Classloader Safety
+## 3. Dependency Requirements
 
-Creative Fly Speed is fully engineered for multi-environment reliability:
-- **Dedicated Server**: Runs headless without any client graphical dependencies.
-- **Pure GameRule Architecture**: Speed modifications take place in `ServerPlayer` on the logical server, automatically transmitting ability updates to connected clients.
-- **Client Independence**: While client entrypoint `CreativeFlySpeedFabricClient` is registered for Fabric standards, unmodded vanilla clients can connect to servers running Creative Fly Speed if permitted by server packet configurations.
+| Dependency | Required Version | Scope | Note |
+| :--- | :--- | :--- | :--- |
+| **Fabric Loader** | `>=0.15.11` to `>=0.19.5` | Required | Standard Fabric runtime loader |
+| **Fabric API** | `*` (Era-appropriate) | Required | Provides command registration & lifecycle events |
+| **DasikLibrary** | `>=1.9.0` | Required | Powers `DynamicGameRuleManager` and creator support links |
+| **ModMenu** | Optional | Client-side | Adds configuration / support links in mod list |
 
 ---
 
-## 🗄️ Local Archive & Build Artifacts
+## 4. Cross-Version Invariants
 
-Compiled mod JARs are automatically archived under:
-- `Archive Jar of all versions/MC 26.3/`
-- `Creative Fly Speed/Archive/`
-- Central Release Hub: `minecraft-mod-release-hub/archives/creative-fly-speed/`
+Across all supported versions:
+- GameRule categories and keys are 100% identical: `vo_creative_fly_speed:fly_speed`, `vo_creative_fly_speed:creative_fly_speed`, `vo_creative_fly_speed:spectator_fly_speed`.
+- Brigadier commands `/cfs` and `/creativeflyspeed` are registered identically.
+- Zero configuration files are written to disk; world persistence is entirely inside `level.dat`.
+- Mathematical velocity calculations and epsilon guards are identical across all anchors.

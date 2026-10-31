@@ -1,27 +1,73 @@
-# ✈️ Creative Fly Speed (Minecraft 26.3) 官方文档
+# ✈️ Creative Fly Speed (Minecraft 26.3)
 
 🌐 **Languages**: [[🇺🇸 English|Home]] | [[🇨🇳 简体中文|zh_cn-Home]] | [[🇭🇰 繁體中文|zh_tw-Home]] | [[🇷🇺 Русский|ru_ru-Home]] | [[🇪🇸 Español|es_es-Home]] | [[🇩🇪 Deutsch|de_de-Home]] | [[🇫🇷 Français|fr_fr-Home]] | [[🇧🇷 Português|pt_br-Home]] | [[🇯🇵 日本語|ja_jp-Home]] | [[🇮🇩 Bahasa Indonesia|id_id-Home]] | [[🇰🇷 한국어|ko_kr-Home]]
 
-> 📌 **仓库源码免责声明**：本 Wiki 中的文档反映了**仓库中的当前源代码状态**，可能包含领先于 CurseForge 和 Modrinth 上公开版本的近期未发布提交或开发特性。
+> 📌 **代码仓库源码免责声明**：本维基文档反映了**仓库当前的源代码状态**，可能包含领先于 CurseForge 与 Modrinth 上公开发布版本的最新开发提交或未发布功能。
 
 ---
 
-## 🚀 Subsystems (Minecraft 26.3)
+## 🎯 Anchor Overview: Minecraft 26.3
 
-- **[[Flight Speed Kinematics|zh_cn-26.3-Flight-Speed-Kinematics]]**:
-  - Full details on `vo_creative_fly_speed` and `vo_spectator_fly_speed` permille calculations.
-  - Floating-point epsilon drift protection with zero network packet spam.
-- **[[Configuration & Dynamic GameRules|zh_cn-26.3-Configuration-and-GameRules]]**:
-  - Brigadier command management and real-time level synchronization.
-- **[[Architecture & Mixins Breakdown|zh_cn-26.3-Architecture-and-Mixins]]**:
-  - In-depth bytecode analysis of `ServerPlayerMixin` and server tick event listeners.
-- **[[Developer Setup & Building|zh_cn-26.3-Developer-Setup-and-Building]]**:
-  - Local toolchain specifications and headless Gradle compile workflows.
+Welcome to the dedicated documentation tree for **Creative Fly Speed v1.0.0+26.3** running on **Minecraft 26.3**.
+
+| Specification | Target Parameter |
+| :--- | :--- |
+| **Minecraft Anchor** | `26.3` |
+| **Mod SemVer** | `1.0.0+26.3` |
+| **Fabric Loader** | `>=0.19.5` |
+| **Java Toolchain** | Java 25 |
+| **Loom Version** | `1.11` |
+| **Status Classification** | 🟢 Active Lead |
+| **Subproject Path** | `Creative Fly Speed v26.3` |
 
 ---
 
-## 🧭 Navigation
-- [[Switch to Minecraft 26.2|zh_cn-26.2-Home]]
-- [[Version Compatibility|zh_cn-Version-Compatibility]]
-- [[Troubleshooting & FAQ|zh_cn-Troubleshooting-and-FAQ]]
-- [[Return to Master Home Portal|zh_cn-Home]]
+## 🧭 Subsystem Documentation Pages
+
+Explore the 5 core technical guides for this version anchor:
+
+1. [[✈️ Flight Speed Kinematics|zh_cn-26.3-Flight-Speed-Kinematics]]
+   - Permille velocity calculation formulas ($S_{\text{fly}} = 0.05 \times \frac{P}{1000}$).
+   - Sprint compounding ($1.4\times$) and float epsilon drift guards ($10^{-6}\text{ F}$).
+   - Instantaneous server-to-client abilities packet dispatch.
+
+2. [[⚙️ Configuration & Dynamic GameRules|zh_cn-26.3-Configuration-and-GameRules]]
+   - Sovereign GameRules: `vo_creative_fly_speed:creative_fly_speed` & `vo_creative_fly_speed:spectator_fly_speed`.
+   - Permille integer range $[1, 100000]$ ($0.001\times$ to $100.0\times$).
+   - Dynamic unregistration lifecycle on server stop via `DynamicGameRuleManager`.
+
+3. [[💬 Brigadier Commands & Suite (/cfs)|zh_cn-26.3-Commands-and-Brigadier]]
+   - Complete `/cfs` and `/creativeflyspeed` command tree.
+   - Live querying (`status`, `get`) and modification (`set`, `reset`).
+   - Operator permissions and formatted feedback.
+
+4. [[💻 Architecture & Mixins Breakdown|zh_cn-26.3-Architecture-and-Mixins]]
+   - `ServerPlayerMixin.tick()` injection at `@At("HEAD")`.
+   - Mixin purity: zero business logic in mixin, delegated to `FlySpeedLogic`.
+   - $O(1)$ complexity, zero heap allocation, and Knot classloader safety.
+
+5. [[🛠️ Developer Setup & Building|zh_cn-26.3-Developer-Setup-and-Building]]
+   - Subproject layout, JDK 25 setup, and Gradle build instructions.
+   - Headless test execution (`./gradlew test`).
+
+---
+
+## ⚡ Quick Start: Operator Commands
+
+```mcfunction
+# View active flight speeds
+/cfs status
+
+# Set Creative flight speed to 2.5x
+/cfs set creative 2500
+
+# Set Spectator flight speed to 0.5x for camera recording
+/cfs set spectator 500
+
+# Reset all speeds to vanilla 1.0x
+/cfs reset
+```
+
+---
+
+[[⬅️ Back to Version Selector Portal|zh_cn-Home]]
