@@ -1,62 +1,115 @@
-# ✈️ Vanilla Outsider: Creative Fly Speed Wiki Oficial
+# ✈️ Vanilla Outsider: Creative Fly Speed Wiki
 
 🌐 **Languages**: [[🇺🇸 English|Home]] | [[🇨🇳 简体中文|zh_cn-Home]] | [[🇭🇰 繁體中文|zh_tw-Home]] | [[🇷🇺 Русский|ru_ru-Home]] | [[🇪🇸 Español|es_es-Home]] | [[🇩🇪 Deutsch|de_de-Home]] | [[🇫🇷 Français|fr_fr-Home]] | [[🇧🇷 Português|pt_br-Home]] | [[🇯🇵 日本語|ja_jp-Home]] | [[🇮🇩 Bahasa Indonesia|id_id-Home]] | [[🇰🇷 한국어|ko_kr-Home]]
 
-> 📌 **Descargo de responsabilidad sobre el código fuente del repositorio**: La documentación de esta Wiki refleja el **estado actual del código fuente en el repositorio**, que puede incluir confirmaciones recientes no publicadas o características en desarrollo antes de las versiones públicas en CurseForge y Modrinth.
+> 📌 **Descargo de responsabilidad del código fuente del repositorio**: La documentación de esta Wiki refleja el **estado actual del código fuente en el repositorio**, que puede incluir confirmaciones recientes no publicadas o características en desarrollo antes de las compilaciones públicas en CurseForge y Modrinth.
 
 ---
 
-## 🎯 Bienvenido a la Documentación Oficial
+## 🎯 Welcome to the Official Documentation
 
-**Creative Fly Speed** es un mod de cinemática de vuelo ligero y de alto rendimiento de la **Vanilla Outsider Collection**, desarrollado por **Dasik (Rifaditya)**. Proporciona a constructores, creadores de mapas, operadores de servidores y cineastas un control nativo y fluido de la velocidad de vuelo en los modos Creativo y Espectador mediante GameRules sincronizadas con el servidor.
+**Creative Fly Speed** is a high-performance, lightweight flight kinematics mod in the **Vanilla Outsider Collection**, engineered by **Dasik (Rifaditya)**. It gives builders, world creators, operators, and cinematic observers native, seamless control over player flight speed in Creative and Spectator modes directly through server-synchronized Minecraft GameRules and dedicated Brigadier commands (`/cfs`).
 
-Diseñado bajo la **Libertad de Agencia del Jugador (Player Agency & Anti-Nanny Invariant)**, no impone techos artificiales: los jugadores pueden aumentar la velocidad de vuelo hasta $100\times$ para atravesar mundos rápidamente o reducirla a $0.1\times$ para construcciones de precisión milimétrica.
+Designed around the **Player Agency & Anti-Nanny Invariant**, this mod imposes zero artificial ceilings: players can tune flight speeds up to $100\times$ baseline velocity for rapid world traversal or scale down to $0.1\times$ for microscopic voxel detailing.
 
 ---
 
-## 🧭 Portal Selector de Versiones
+## 🧭 Active Version Selector Portal
 
-Seleccione su versión de Minecraft para acceder al árbol de documentación dedicado:
+Select your targeted Minecraft version to access the isolated documentation tree:
 
-| Versión Objetivo | Anclaje de Versión | Herramientas | Estado | Portal Directo |
+| Target Minecraft Version | Mod Release Anchor | Runtime Toolchain | Status | Direct Documentation Portal |
 | :--- | :--- | :--- | :---: | :--- |
-| **Minecraft 26.3** | `1.0.0+26.3` | Fabric Loader `>=0.19.3` / Java 25 | 🟢 Versión Actual | [[👉 Entrar a la Wiki de MC 26.3|es_es-26.3-Home]] |
-| **Minecraft 26.2** | `1.0.0+26.2` | Fabric Loader `>=0.16.10` / Java 25 | 🟡 Anclaje de Paridad | [[👉 Entrar a la Wiki de MC 26.2|es_es-26.2-Home]] |
+| **Minecraft 26.3** | `1.0.0+26.3` | Fabric Loader `>=0.19.5` / Java 25 | 🟢 Active Lead | [[👉 Enter MC 26.3 Wiki Portal|es_es-26.3-Home]] |
+| **Minecraft 26.2** | `1.0.0+26.2` | Fabric Loader `>=0.19.4` / Java 25 | 🟡 Parity Anchor | [[👉 Enter MC 26.2 Wiki Portal|es_es-26.2-Home]] |
+| **Minecraft 26.1.2** | `1.0.0+26.1.2` | Fabric Loader `>=0.19.3` / Java 25 | 🟡 Parity Anchor | [[👉 Enter MC 26.1.2 Wiki Portal|es_es-26.1.2-Home]] |
+| **Minecraft 1.21.11** | `1.0.0+1.21.11` | Fabric Loader `>=0.16.5` / Java 21 | 🔵 Transitional Anchor | [[👉 Enter MC 1.21.11 Wiki Portal|es_es-1.21.11-Home]] |
+| **Minecraft 1.21.1** | `1.0.0+1.21.1` | Fabric Loader `>=0.16.0` / Java 21 | 🟠 Legacy Anchor | [[👉 Enter MC 1.21.1 Wiki Portal|es_es-1.21.1-Home]] |
+| **Minecraft 1.20.1** | `1.0.0+1.20.1` | Fabric Loader `>=0.15.11` / Java 17 | 🟣 Master Legacy | [[👉 Enter MC 1.20.1 Wiki Portal|es_es-1.20.1-Home]] |
 
 > [!NOTE]
-> Bajo la política **1 Jar 1 Version Policy**, cada rama de versión se construye como un artefacto soberano e independiente con sus asignaciones de dependencias.
+> Under the project's **1 Jar 1 Version Policy**, each version branch is maintained as a sovereign, self-contained implementation with dedicated dependency mappings.
 
 ---
 
-## 🌟 Resumen de Subsistemas Principales
+## 🌟 Core Architectural Flowchart
 
-- **[[Cinemática de velocidad de vuelo|es_es-26.3-Flight-Speed-Kinematics]]**:
-  - Cálculo de velocidad por permille: $S_{\text{fly}} = 0.05 \times \frac{P}{1000}$ bloques/tick.
-  - Multiplicador de sprint compuesto ($1.4\times$).
-  - Filtro de deriva en coma flotante ($10^{-6}\text{ F}$) para evitar saturación de paquetes en red.
-  - Operación segura: no interfiere con los modos Supervivencia ni Aventura.
-- **[[Ajustes y GameRules|es_es-26.3-Configuration-and-GameRules]]**:
-  - Registro dinámico bajo la categoría `vo_creative_fly_speed:fly_speed` mediante DasikLibrary.
-  - `vo_creative_fly_speed`: Multiplicador en modo Creativo (por defecto `1000` = $1.0\times$).
-  - `vo_spectator_fly_speed`: Multiplicador en modo Espectador (por defecto `1000` = $1.0\times$).
-  - Rango completo de `1` a `100000`, persistido de forma nativa en `level.dat`.
-- **[[Arquitectura y Mixins|es_es-26.3-Architecture-and-Mixins]]**:
-  - Inyección limpia en `ServerPlayer.tick()` en `@At("HEAD")`.
-  - Cero lógica de negocio en el Mixin: delegación total en `FlySpeedLogic`.
-  - Rendimiento $O(1)$ sin asignación de memoria dinámica (heap).
+```
+                 [ Server Player Tick ]
+                           |
+                           v
+           [ ServerPlayerMixin.tick() @ HEAD ]
+                           |
+                           v
+         [ FlySpeedLogic.applyFlySpeedToPlayer() ]
+                           |
+          +----------------+----------------+
+          |                                 |
+  GameType == CREATIVE            GameType == SPECTATOR
+          |                                 |
+          v                                 v
+[ Fetch CREATIVE_FLY_SPEED ]    [ Fetch SPECTATOR_FLY_SPEED ]
+          |                                 |
+          +----------------+----------------+
+                           |
+                           v
+        [ Calculate targetSpeed = 0.05 * (P / 1000) ]
+                           |
+                           v
+          [ Guard: |current - target| > 1e-6 ]
+                           |
+                 +---------+---------+
+                 |                   |
+            (Within Drift)      (Drift Exceeded)
+                 |                   |
+                 v                   v
+            [ Early Return ]    [ abilities.setFlyingSpeed(target) ]
+            [  (No Packets) ]   [ player.onUpdateAbilities()       ]
+                                     |
+                                     v
+                        [ Dispatch Abilities Packet ]
+```
 
 ---
 
-## 📚 Documentación General y Solución de Problemas
+## 🚀 Core Subsystem Overviews
 
-- [[Matriz de compatibilidad de versiones|es_es-Version-Compatibility]]: Entornos de compilación Loom, Fabric Loader y Java 25.
-- [[Solución de problemas y FAQ|es_es-Troubleshooting-and-FAQ]]: Guía de resolución de desincronización, paquetes y persistencia.
-- [[Guía de compilación para desarrolladores|es_es-Developer-Setup-and-Building]]: Instrucciones de compilación con Gradle 9.3+.
+### 1. [[Flight Speed Kinematics|es_es-26.3-Flight-Speed-Kinematics]]
+- **Permille Scaling Precision**: Translates permille integers ($P \in [1, 100000]$) into fractional velocity units ($S_{\text{fly}} = 0.05 \times \frac{P}{1000}$ blocks/tick).
+- **Compounding Sprint Velocity**: Vanilla flight sprinting multiplier ($1.4\times$) cascades directly on top of the calculated flight speed.
+- **Float Epsilon Guard**: Enforces $|\text{speed}_{\text{current}} - \text{speed}_{\text{target}}| > 10^{-6}$ before mutating abilities, completely eliminating redundant packet transmissions.
+- **Side-Safe Packet Synchronization**: Emits `ClientboundPlayerAbilitiesPacket` via `ServerPlayer.onUpdateAbilities()` for jitter-free client flight rendering.
+
+### 2. [[Configuration & Dynamic GameRules|es_es-26.3-Configuration-and-GameRules]]
+- **Dynamic GameRule Integration**: Dynamic category registration under `vo_creative_fly_speed:fly_speed` powered by DasikLibrary.
+- **Sovereign Multiplier Rules**:
+  - `vo_creative_fly_speed:creative_fly_speed`: Flight speed multiplier for Creative mode (default: `1000` = $1.0\times$).
+  - `vo_creative_fly_speed:spectator_fly_speed`: Flight speed multiplier for Spectator mode (default: `1000` = $1.0\times$).
+- **Anti-Nanny Invariant**: Allows integer values up to $100,000$ ($100\times$ vanilla speed) without arbitrary mod-imposed ceilings.
+- **Per-World Persistence**: Native persistence inside `level.dat` with zero external JSON configs required.
+
+### 3. [[Brigadier Commands & Suite|es_es-26.3-Commands-and-Brigadier]]
+- **Dedicated Command Trees**: Access full control via `/cfs` or `/creativeflyspeed`.
+- **In-Game Status & Tuning**: `/cfs status` queries active speeds; `/cfs set <creative|spectator> <permille>` sets speed dynamically.
+- **One-Click Reset**: `/cfs reset` restores vanilla default speeds ($1000‰$ / $1.0\times$) instantly.
+
+### 4. [[Architecture & Mixins Breakdown|es_es-26.3-Architecture-and-Mixins]]
+- **Mixin Purity**: `ServerPlayerMixin` injects at `@At("HEAD")` of `ServerPlayer.tick()`, containing strictly zero business logic.
+- **Stateless Computation**: All calculations execute in `FlySpeedLogic` with zero object allocations and $O(1)$ arithmetic complexity.
+- **Safe Isolation**: Survival and Adventure game modes are immediately bypassed without touching vanilla flight mechanics.
 
 ---
 
-## 📜 Créditos y Licencia
+## 📚 General Documentation & Developer Reference
 
-- **Autor y Mantenimiento**: **Dasik (Rifaditya)**
-- **Licencia**: **GNU General Public License v3.0 (GPLv3)**
-- **Código Fuente**: [GitHub Repository](https://github.com/Rifaditya/Creative-Fly-Speed)
+- [[Version Compatibility & Matrix|es_es-Version-Compatibility]]: Exhaustive breakdown of Loom, Fabric Loader, Parchment, and Java version requirements.
+- [[Troubleshooting & FAQ|es_es-Troubleshooting-and-FAQ]]: Detailed diagnosis for flight jitter, floating-point drift, server tick rate considerations, and world save migration.
+- [[Developer Setup & Building Guide|es_es-Developer-Setup-and-Building]]: Instructions for compiling the repository, setting up Gradle, and configuring the Loom toolchain.
+
+---
+
+## 💬 Community & Creator Support
+
+- 🐙 **Source Code**: [GitHub Repository](https://github.com/Rifaditya/Creative-Fly-Speed)
+- 💬 **Discord Community**: [Join Dasik Discord](https://discord.gg/EV99bgAFqb)
+- ☕ **Support Development**: [Support on Ko-fi](https://ko-fi.com/dasikigaijin)
