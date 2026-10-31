@@ -45,7 +45,7 @@ class CreativeFlySpeedSidednessContractTest {
         if (Files.exists(current.resolve("src/main/java"))) {
             return current;
         }
-        Path fallback = Paths.get("e:/Minecraft Project/Vanilla Outsider Collections/Creative Fly Speed mod/Creative Fly Speed v26.3");
+        Path fallback = Paths.get("e:/Minecraft Project/Vanilla Outsider Collections/Creative Fly Speed mod/Creative Fly Speed v26.2");
         if (Files.exists(fallback.resolve("src/main/java"))) {
             return fallback;
         }
