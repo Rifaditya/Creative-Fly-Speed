@@ -1,5 +1,19 @@
 # Release History
 
+## [1.2.0+26.3] — 2026-11-01
+
+Lead anchor feature release implementing optional client configuration GUI via YetAnotherConfigLib (YACL) v3 and ModMenu integration under the Lead Anchor Development Cadence.
+
+### Highlights
+- **Optional Client Configuration GUI**: Implemented server-safe client configuration screen powered by `UniversalConfigScreen` from `dasik-library` (v1.12.0) and YACL v3.
+- **Side-Safe Common Configuration**: Authored `CreativeFlySpeedConfig` in `net.vanillaoutsider.vo_creative_fly_speed.config` exposing `@ConfigOption` fields with 0 client imports, eliminating Knot ClassLoader server crashes (`ERR-HEADLESS-SIDEDNESS`).
+- **Client ModMenu Entrypoint**: Authored `CreativeFlySpeedModMenu` in `net.vanillaoutsider.vo_creative_fly_speed.client` annotated with `@Environment(EnvType.CLIENT)`, registered in `fabric.mod.json` alongside `"suggests"` block.
+- **Dual-Context Live Sync**: In singleplayer worlds, slider updates automatically synchronize with `vo_creative_fly_speed:creative_fly_speed` and `vo_creative_fly_speed:spectator_fly_speed` GameRules via `DynamicGameRuleConfigSync`.
+- **5-Pillar Verification Harness**: Authored `CreativeFlySpeedModMenuTest` asserting reflection factory generation, fallback null screen safety in headless environments, hermetic JSON persistence, and zero client imports in common code. All 26 tests passed green.
+- **Universal 5-Point Distribution**: Release JAR deployed across local archive, release hub archive, external vault (`D:\`), and active Modrinth test profiles.
+
+---
+
 ## [1.1.0+26.3] — 2026-10-31
 
 ### Added
