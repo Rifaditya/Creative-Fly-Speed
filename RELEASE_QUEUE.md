@@ -5,4 +5,5 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.2.0+26.2`** (2026-11-01) - Add Optional Client Configuration GUI (YACL / ModMenu Integration)
 - [ ] **`1.1.0+26.2`** (2026-10-31) - Parity Update: Brigadier Command Suite & 5-Pillar Verification Harness
