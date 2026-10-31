@@ -3,15 +3,18 @@ package net.vanillaoutsider.vo_creative_fly_speed;
 
 import net.dasik.social.api.gamerule.DynamicGameRuleManager;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.vanillaoutsider.vo_creative_fly_speed.command.CreativeFlySpeedCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Main mod initializer. Bootstraps GameRule registration.
+ * Main mod initializer. Bootstraps GameRule registration and Brigadier commands.
  *
  * Zenith Module: Modular — game rule registration is in CreativeFlySpeedRules,
- * logic in FlySpeedLogic, mixin hook in mixin/ServerPlayerMixin.
+ * logic in FlySpeedLogic, mixin hook in mixin/ServerPlayerMixin,
+ * command suite in command/CreativeFlySpeedCommand.
  */
 public class CreativeFlySpeedFabric implements ModInitializer {
     public static final String MOD_ID = "vo_creative_fly_speed";
@@ -23,6 +26,10 @@ public class CreativeFlySpeedFabric implements ModInitializer {
         // This registers the GameRules with Minecraft's registry at startup.
         LOGGER.info("[Creative Fly Speed] Registering GameRules: creativeFlySpeed, spectatorFlySpeed");
         final var _ = CreativeFlySpeedRules.CREATIVE_FLY_SPEED; // class-load trigger (Java 25 unnamed var)
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            CreativeFlySpeedCommand.register(dispatcher);
+        });
 
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
             int purged = DynamicGameRuleManager.unregisterModRules(MOD_ID);
