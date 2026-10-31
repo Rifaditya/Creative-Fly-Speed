@@ -1,0 +1,132 @@
+# ✈️ Flight Speed Kinematics (Minecraft 26.2)
+
+> 📌 **Отказ от ответственности за исходный код репозитория**: Документация в этой Вики отражает **текущее состояние исходного кода в репозитории**, которое может включать недавние невыпущенные коммиты или разрабатываемые функции, опережающие общедоступные сборки на CurseForge и Modrinth.
+
+---
+
+## 1. Official-Style Infobox
+
+| Property | Technical Details |
+| :--- | :--- |
+| **Subsystem Namespace** | `vo_creative_fly_speed` |
+| **Target Minecraft Version** | `26.2` (`1.0.0+26.2`) |
+| **Logic Implementation** | `FlySpeedLogic.java` |
+| **Bytecode Mixin Hook** | `ServerPlayerMixin.java` |
+| **Vanilla Base Flight Speed ($S_{\text{vanilla}}$)** | `0.05F` blocks/tick ($1.0\text{ m/s}$) |
+| **Sprint Velocity Multiplier** | $1.4\times$ ($+40\%$ additive sprint flight) |
+| **Epsilon Drift Guard ($\epsilon$)** | $10^{-6}\text{ F}$ (`1e-6F`) |
+| **Network Synchronization Packet** | `ClientboundPlayerAbilitiesPacket` via `ServerPlayer.onUpdateAbilities()` |
+| **Supported GameModes** | `GameType.CREATIVE`, `GameType.SPECTATOR` (Bypasses `SURVIVAL`, `ADVENTURE`) |
+
+---
+
+## 2. Step-by-Step Player Workflow
+
+1. **Enter an Authorized GameMode**:
+   - Switch your player to Creative (`/gamemode creative`) or Spectator (`/gamemode spectator`).
+2. **Double-Tap Jump to Fly**:
+   - Double-tap the spacebar to initiate flight.
+3. **Calibrate Flight Speed Multiplier**:
+   - An operator executes `/cfs set creative 2000` or `/gamerule vo_creative_fly_speed:creative_fly_speed 2000` ($2.0\times$ speed).
+4. **Instantaneous Kinetic Transition**:
+   - On the very next server tick ($50\text{ ms}$ max interval), `FlySpeedLogic` evaluates the new rule, mutates `Abilities.flyingSpeed`, and synchronizes the client.
+   - The player instantly accelerates to $0.10\text{ blocks/tick}$ ($2.0\text{ m/s}$) without requiring relogging or landing.
+5. **Sprint Boost Engagement**:
+   - Holding the sprint key (`Control` or double-tapping `W`) multiplies the active flight speed by $1.4\times$, delivering $0.14\text{ blocks/tick}$ ($2.8\text{ m/s}$).
+
+---
+
+## 3. Mathematical Formulas & Kinematics Equations
+
+### A. Permille Velocity Scaling Formula
+Flight speed is calculated directly from the integer permille value $P \in [1, 100000]$:
+
+$$S_{\text{fly}} = S_{\text{vanilla}} \times \left( \frac{P}{1000.0} \right)$$
+
+Where:
+- $S_{\text{vanilla}} = 0.05\text{ blocks/tick}$ ($1.0\text{ block/second}$ at $20\text{ ticks/s}$).
+- $P$ is the permille GameRule value (default: $1000$).
+
+### B. Sprint Velocity Compounding
+When a flying player engages sprint mode, the engine compounds the sprint multiplier:
+
+$$S_{\text{sprint}} = S_{\text{fly}} \times 1.4 = 0.05 \times \left( \frac{P}{1000.0} \right) \times 1.4$$
+
+### C. Metric Speed Conversions
+Converting internal blocks/tick velocity into standard metric units:
+
+$$V_{\text{m/s}} = S_{\text{fly}} \times 20.0 \quad (\text{blocks/second})$$
+
+$$V_{\text{km/h}} = V_{\text{m/s}} \times 3.6 = S_{\text{fly}} \times 72.0 \quad (\text{km/h})$$
+
+### D. Floating-Point Epsilon Drift Guard
+To prevent constant IEEE 754 floating-point jitter and avoid saturating the network pipeline:
+
+$$\Delta = \left| S_{\text{current}} - S_{\text{target}} \right|$$
+
+$$\text{Sync Action} = \begin{cases} \text{Execute } \texttt{setFlyingSpeed}(S_{\text{target}}) \text{ and } \texttt{onUpdateAbilities}(), & \text{if } \Delta > 10^{-6} \\ \text{Bypass (Early Return)}, & \text{if } \Delta \le 10^{-6} \end{cases}$$
+
+---
+
+## 4. Visual ASCII Kinematic Lifecycle Diagram
+
+```
++-------------------------------------------------------------------------+
+|                       SERVER TICK LIFECYCLE                             |
++-------------------------------------------------------------------------+
+                                     |
+                                     v
+                 [ ServerPlayer.tick() Injection Point ]
+                                     |
+                                     v
+                       [ Evaluate GameMode Type ]
+                                     |
+                +--------------------+--------------------+
+                |                                         |
+         case CREATIVE                             case SPECTATOR
+                |                                         |
+                v                                         v
+   Fetch vo_creative_fly_speed:creative_fly_speed    Fetch vo_creative_fly_speed:spectator_fly_speed
+                |                                         |
+                +--------------------+--------------------+
+                                     |
+                                     v
+                    [ Calculate Target Float Speed ]
+                     targetSpeed = 0.05F * (P / 1000.0F)
+                                     |
+                                     v
+                [ Epsilon Check: |current - target| > 1e-6F ]
+                                     |
+                 +-------------------+-------------------+
+                 |                                       |
+           (True: Drifted)                         (False: Stable)
+                 |                                       |
+                 v                                       v
+    [ abilities.setFlyingSpeed ]                   [ Early Return ]
+    [ player.onUpdateAbilities ]                   [ (0 Packets)  ]
+                 |
+                 v
+   [ ClientboundPlayerAbilitiesPacket ]
+```
+
+---
+
+## 5. Exhaustive Permille Velocity Reference Table
+
+| Permille Value ($P$) | Multiplier | Flight Velocity ($S_{\text{fly}}$) | Sprint Flight ($S_{\text{sprint}}$) | Metric Speed ($V_{\text{m/s}}$) | Real-World Equivalent |
+| :---: | :---: | :---: | :---: | :---: | :--- |
+| `1` | $0.001\times$ | $0.00005\text{ blk/t}$ | $0.00007\text{ blk/t}$ | $0.001\text{ m/s}$ | Microscopic voxel sculpting |
+| `250` | $0.25\times$ | $0.0125\text{ blk/t}$ | $0.0175\text{ blk/t}$ | $0.25\text{ m/s}$ | Slow cinematic camera glide |
+| `500` | $0.50\times$ | $0.0250\text{ blk/t}$ | $0.0350\text{ blk/t}$ | $0.50\text{ m/s}$ | Precise architectural detailing |
+| **`1000`** | **$1.0\times$ (Default)** | **$0.0500\text{ blk/t}$** | **$0.0700\text{ blk/t}$** | **$1.00\text{ m/s}$** | **Vanilla Minecraft baseline** |
+| `1500` | $1.5\times$ | $0.0750\text{ blk/t}$ | $0.1050\text{ blk/t}$ | $1.50\text{ m/s}$ | Comfortable building pace |
+| `2000` | $2.0\times$ | $0.1000\text{ blk/t}$ | $0.1400\text{ blk/t}$ | $2.00\text{ m/s}$ | Double speed world review |
+| `2500` | $2.5\times$ | $0.1250\text{ blk/t}$ | $0.1750\text{ blk/t}$ | $2.50\text{ m/s}$ | Popular creative builder setting |
+| `5000` | $5.0\times$ | $0.2500\text{ blk/t}$ | $0.3500\text{ blk/t}$ | $5.00\text{ m/s}$ | Fast continent scouting |
+| `10000` | $10.0\times$ | $0.5000\text{ blk/t}$ | $0.7000\text{ blk/t}$ | $10.00\text{ m/s}$ | Rapid inter-biome transit |
+| `50000` | $50.0\times$ | $2.5000\text{ blk/t}$ | $3.5000\text{ blk/t}$ | $50.00\text{ m/s}$ | Extreme velocity stress testing |
+| `100000` | $100.0\times$ | $5.0000\text{ blk/t}$ | $7.0000\text{ blk/t}$ | $100.00\text{ m/s}$ | Maximum ceiling ($360\text{ km/h}$) |
+
+---
+
+[[⬅️ Back to MC 26.2 Portal|ru_ru-26.2-Home]]
