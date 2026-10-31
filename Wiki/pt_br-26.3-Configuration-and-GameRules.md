@@ -1,54 +1,100 @@
-# ⚙️ Configuração & GameRules (Minecraft 26.3)
+# ⚙️ Configuration & Dynamic GameRules (Minecraft 26.3)
 
-🌐 **Languages**: [[🇺🇸 English|Home]] | [[🇨🇳 简体中文|zh_cn-Home]] | [[🇭🇰 繁體中文|zh_tw-Home]] | [[🇷🇺 Русский|ru_ru-Home]] | [[🇪🇸 Español|es_es-Home]] | [[🇩🇪 Deutsch|de_de-Home]] | [[🇫🇷 Français|fr_fr-Home]] | [[🇧🇷 Português|pt_br-Home]] | [[🇯🇵 日本語|ja_jp-Home]] | [[🇮🇩 Bahasa Indonesia|id_id-Home]] | [[🇰🇷 한국어|ko_kr-Home]]
-
-> 📌 **Isenção de Responsabilidade do Código-Fonte do Repositório**: A documentação nesta Wiki reflete o **estado atual do código-fonte no repositório**, que pode incluir commits recentes não lançados ou recursos de desenvolvimento à frente das versões públicas no CurseForge e Modrinth.
+> 📌 **Isenção de responsabilidade do código-fonte do repositório**: A documentação nesta Wiki reflete o **estado atual do código-fonte no repositório**, que pode incluir commits recentes não lançados ou recursos de desenvolvimento anteriores às versões públicas no CurseForge e Modrinth.
 
 ---
 
-## 📋 Technical Infobox
+## 1. Official-Style Infobox
 
-| Specification | Technical Details |
+| Property | Technical Details |
 | :--- | :--- |
-| **System Architecture** | Dynamic Namespaced GameRules (powered by DasikLibrary) |
-| **GameRule Category** | `creative_fly_speed:rules` ("Creative Fly Speed") |
-| **Primary GameRules** | `vo_creative_fly_speed`, `vo_spectator_fly_speed` |
-| **Valid Range** | `1` to `100000` (Permille scale: $0.001\times$ to $100.0\times$) |
-| **Default Settings** | `1000` ($1.0\times$ vanilla parity) |
-| **Target Minecraft Version** | `26.3` |
+| **Target Minecraft Version** | `26.3` (`1.0.0+26.3`) |
+| **Category Identifier** | `vo_creative_fly_speed:fly_speed` |
+| **Registration Engine** | `DynamicGameRuleManager` (via DasikLibrary) |
+| **Storage Architecture** | NBT persistence inside `level.dat` (`Data.GameRules`) |
+| **Permission Level Required** | Level 2 (Server Operator / Dedicated Host) |
+| **Permille Value Bounds** | Min: `1` ($0.001\times$) &#124; Max: `100000` ($100.0\times$) |
+| **Hot-Reload Support** | Instantaneous; updates take effect on the next server tick |
+| **Translation Keys** | `gamerule.category.vo_creative_fly_speed.fly_speed`<br>`gamerule.vo_creative_fly_speed.creative_fly_speed`<br>`gamerule.vo_creative_fly_speed.spectator_fly_speed` |
 
 ---
 
-## 🎮 Server Administration Workflow
+## 2. Step-by-Step Operator Workflow
 
-Server operators can modify flight speed dynamically in real-time with immediate effect without server restarts:
+### Changing Creative Flying Speed
+1. Ensure operator privileges (Permission Level 2 or singleplayer cheats enabled).
+2. Open chat (`T` or `/`).
+3. Execute the command:
+   ```mcfunction
+   /gamerule vo_creative_fly_speed:creative_fly_speed 2500
+   ```
+   *(Or use the Brigadier shorthand: `/cfs set creative 2500`)*
+4. All players currently in Creative mode immediately fly at $2.5\times$ speed.
 
+### Changing Spectator Flying Speed
+1. For slow, cinematic camera panning, execute:
+   ```mcfunction
+   /gamerule vo_creative_fly_speed:spectator_fly_speed 250
+   ```
+   *(Or use the Brigadier shorthand: `/cfs set spectator 250`)*
+2. Spectators now navigate at $0.25\times$ speed ($0.0125\text{ blocks/tick}$), completely eliminating camera jerking.
+
+### Restoring Defaults
 ```mcfunction
-# Check current creative flight speed
-/gamerule vo_creative_fly_speed
+/gamerule vo_creative_fly_speed:creative_fly_speed 1000
+/gamerule vo_creative_fly_speed:spectator_fly_speed 1000
+```
+*(Or simply: `/cfs reset`)*
 
-# Set creative flight speed to 3.0x (3000 permille)
-/gamerule vo_creative_fly_speed 3000
+---
 
-# Set spectator flight speed to 5.0x (5000 permille)
-/gamerule vo_spectator_fly_speed 5000
+## 3. Mathematical Range Constraints & Freedom Over Anti-Crash
 
-# Reset creative flight speed to vanilla default (1.0x)
-/gamerule vo_creative_fly_speed 1000
+In accordance with the **Freedom Over Anti-Crash Policy** and Studio Constitution, Creative Fly Speed never imposes arbitrary low velocity caps. The permissible bounds are:
+
+$$P \in [1, 100000] \subset \mathbb{Z}^+$$
+
+- **Lower Bound (`1`)**: Protects against IEEE 754 division-by-zero or negative vector inversions.
+- **Upper Bound (`100000`)**: Delivers up to $100\times$ velocity ($5.0\text{ blocks/tick} = 360\text{ km/h}$) for massive world navigation.
+
+---
+
+## 4. Storage Schema: World Save `level.dat` NBT
+
+Because the rules are registered directly with the Minecraft GameRules registry via `DynamicGameRuleManager`, they serialize naturally into standard vanilla world data:
+
+```snbt
+{
+    "Data": {
+        "GameRules": {
+            "vo_creative_fly_speed:creative_fly_speed": "2500",
+            "vo_creative_fly_speed:spectator_fly_speed": "1000",
+            "doDaylightCycle": "true",
+            "keepInventory": "false"
+        },
+        "LevelName": "Creative Sandbox",
+        "version": 19133
+    }
+}
 ```
 
 ---
 
-## 🛡️ Player Agency & Anti-Nanny Invariant
+## 5. Exhaustive GameRules Reference Table
 
-In accordance with our core engineering philosophy:
-- **Upper Freedom**: Speed limit extends up to `100000` ($100\times$), granting builders and administrators absolute velocity freedom.
-- **Lower Bound Safety**: Restricted strictly at $\ge 1$ permille to prevent engine divide-by-zero or frozen flight glitches.
+| Rule Identifier | Category | Type | Default | Bounds | Description |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| `vo_creative_fly_speed:creative_fly_speed` | `vo_creative_fly_speed:fly_speed` | `Integer` | `1000` | `1`..`100000` | Flight speed multiplier for Creative mode in permille ($1000 = 1.0\times$). |
+| `vo_creative_fly_speed:spectator_fly_speed` | `vo_creative_fly_speed:fly_speed` | `Integer` | `1000` | `1`..`100000` | Flight speed multiplier for Spectator mode in permille ($1000 = 1.0\times$). |
 
 ---
 
-## 🔗 Related Documentation
-- [[MC 26.3 Flight Speed Kinematics|pt_br-26.3-Flight-Speed-Kinematics]]
-- [[MC 26.3 Architecture & Mixins Breakdown|pt_br-26.3-Architecture-and-Mixins]]
-- [[MC 26.3 Developer Setup Guide|pt_br-26.3-Developer-Setup-and-Building]]
-- [[Return to MC 26.3 Portal|pt_br-26.3-Home]]
+## 6. Uninstallation & World Save Lifecycle
+
+- **Server Shutdown Lifecycle**: When the server stops, `CreativeFlySpeedFabric` calls `DynamicGameRuleManager.unregisterModRules("vo_creative_fly_speed")`, safely unbinding rules from memory.
+- **Safe Mod Removal**: If Creative Fly Speed is removed from the `mods/` directory, vanilla Minecraft safely ignores unmapped GameRules present in `level.dat`. No world corruption, entity loss, or crash will ever occur.
+- **Abilities Recovery**: On subsequent logins without the mod, the player's abilities revert to standard vanilla $0.05\text{F}$ flying speed automatically.
+
+---
+
+[[⬅️ Back to MC 26.3 Portal|pt_br-26.3-Home]]
