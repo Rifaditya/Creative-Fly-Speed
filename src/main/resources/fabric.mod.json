@@ -1,0 +1,44 @@
+{
+    "schemaVersion": 1,
+    "id": "vo_creative_fly_speed",
+    "version": "${version}",
+    "name": "Creative Fly Speed",
+    "description": "Allows players to adjust their flight speed in Creative and Spectator modes.",
+    "authors": [
+        "DasikIgaijin"
+    ],
+    "contact": {
+        "homepage": "https://github.com/Rifaditya/Creative-Fly-Speed",
+        "sources": "https://github.com/Rifaditya/Creative-Fly-Speed"
+    },
+    "license": "GPL-3.0-or-later",
+    "icon": "assets/vo_creative_fly_speed/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "net.vanillaoutsider.vo_creative_fly_speed.CreativeFlySpeedFabric"
+        ],
+        "client": [
+            "net.vanillaoutsider.vo_creative_fly_speed.CreativeFlySpeedFabricClient"
+        ]
+    },
+    "mixins": [
+        "creative-fly-speed.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.0",
+        "minecraft": "~1.21.1",
+        "java": ">=21",
+        "fabric-api": "*",
+        "dasik-library": ">=1.4.0"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.donate": "https://ko-fi.com/dasikigaijin",
+                "modmenu.kofi": "https://ko-fi.com/dasikigaijin",
+                "modmenu.discord": "https://discord.gg/EV99bgAFqb"
+            }
+        }
+    }
+}
