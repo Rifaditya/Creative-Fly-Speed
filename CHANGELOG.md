@@ -1,5 +1,14 @@
 # Changelog — Creative Fly Speed
 
+## [1.2.0+26.3] — 2026-11-01
+
+### Added
+- Optional client configuration GUI powered by YetAnotherConfigLib (YACL) v3 and ModMenu via `UniversalConfigScreen`.
+- Side-safe common configuration model (`CreativeFlySpeedConfig`) with hermetic JSON persistence (`creative_fly_speed.json`).
+- Dynamic singleplayer GameRule synchronization: adjusting flight speed sliders in the ModMenu config screen automatically updates in-game GameRules (`vo_creative_fly_speed:creative_fly_speed` and `vo_creative_fly_speed:spectator_fly_speed`).
+- Integrated creator support buttons (Ko-fi and Discord) within the ModMenu configuration interface.
+- 5-Pillar unit and contract test suite (`CreativeFlySpeedModMenuTest`) verifying annotation metadata, bytecode environment boundaries, hermetic file persistence, and reflection safety.
+
 ## [1.1.0+26.3] — 2026-10-31
 
 ### Added
