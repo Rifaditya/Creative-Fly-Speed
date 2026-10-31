@@ -1,7 +1,9 @@
 // Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
 package net.vanillaoutsider.vo_creative_fly_speed;
 
+import net.dasik.social.api.gamerule.DynamicGameRuleManager;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +23,12 @@ public class CreativeFlySpeedFabric implements ModInitializer {
         // This registers the GameRules with Minecraft's registry at startup.
         LOGGER.info("[Creative Fly Speed] Registering GameRules: creativeFlySpeed, spectatorFlySpeed");
         final var _ = CreativeFlySpeedRules.CREATIVE_FLY_SPEED; // class-load trigger (Java 25 unnamed var)
+
+        ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+            int purged = DynamicGameRuleManager.unregisterModRules(MOD_ID);
+            LOGGER.info("[Creative Fly Speed] Unregistered {} dynamic GameRules on server shutdown", purged);
+        });
+
         LOGGER.info("[Creative Fly Speed] Initialized. Mod ID: {}", MOD_ID);
     }
 }
