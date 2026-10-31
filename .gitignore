@@ -64,8 +64,11 @@ build_log_utf8.txt
 # Build Logs
 build_log.txt
 build_log_utf8.txt
-*log*
-*log*
+
+# Studio Document Whitelist
+!CHANGELOG.md
+!BACKLOG.md
+!History.md
 
 Archive/
 Archive Jar of all versions/

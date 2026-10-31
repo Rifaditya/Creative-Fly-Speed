@@ -8,8 +8,8 @@
         "DasikIgaijin"
     ],
     "contact": {
-        "homepage": "https://github.com/Rifaditya/Vanilla-Outsider-Creative-Fly-Speed",
-        "sources": "https://github.com/Rifaditya/Vanilla-Outsider-Creative-Fly-Speed"
+        "homepage": "https://github.com/Rifaditya/Creative-Fly-Speed",
+        "sources": "https://github.com/Rifaditya/Creative-Fly-Speed"
     },
     "license": "GPL-3.0-or-later",
     "icon": "assets/vo_creative_fly_speed/icon.png",
@@ -26,16 +26,18 @@
         "creative-fly-speed.mixins.json"
     ],
     "depends": {
-        "fabricloader": ">=0.16.9",
-        "minecraft": "*",
+        "fabricloader": ">=0.19.1",
+        "minecraft": ">=26.1.2-",
         "java": ">=25",
-        "fabric-api": "*"
+        "fabric-api": "*",
+        "dasik-library": ">=1.9.0"
     },
     "custom": {
         "modmenu": {
             "links": {
                 "modmenu.donate": "https://ko-fi.com/dasikigaijin",
-                "modmenu.kofi": "https://ko-fi.com/dasikigaijin"
+                "modmenu.kofi": "https://ko-fi.com/dasikigaijin",
+                "modmenu.discord": "https://discord.gg/EV99bgAFqb"
             }
         }
     }

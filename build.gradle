@@ -1,5 +1,5 @@
 plugins {
-    id 'net.fabricmc.fabric-loom' version '1.14.7'
+    id 'net.fabricmc.fabric-loom' version '1.15-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -14,6 +14,9 @@ repositories {
     mavenLocal()
     maven { url = "https://maven.fabricmc.net/" }
     mavenCentral()
+    flatDir {
+        dirs 'e:/Minecraft Project/DasikLibrary-Rebuilt/Archive/builds', 'e:/Minecraft Project/minecraft-mod-release-hub/archives/Dasik Library'
+    }
 }
 
 dependencies {
@@ -23,6 +26,15 @@ dependencies {
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     implementation "net.dasik.social:dasik-library:${project.dasik_library_version}"
+
+    // Compile-time interface shims required for Dasik Library 1.9.2 compile resolution on MC 26.1.2
+    compileOnly "net.fabricmc.fabric-api:fabric-lifecycle-events-v1:4.1.1+9d6daa9756"
+    compileOnly "net.fabricmc.fabric-api:fabric-permission-api-v1:1.0.2+7c33558a56"
+    testCompileOnly "net.fabricmc.fabric-api:fabric-lifecycle-events-v1:4.1.1+9d6daa9756"
+    testCompileOnly "net.fabricmc.fabric-api:fabric-permission-api-v1:1.0.2+7c33558a56"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 }
 
 processResources {
@@ -50,6 +62,10 @@ java {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 25
+}
+
+test {
+    useJUnitPlatform()
 }
 
 jar {

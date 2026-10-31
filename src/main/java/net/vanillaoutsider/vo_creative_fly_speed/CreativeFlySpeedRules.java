@@ -1,3 +1,4 @@
+// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
 package net.vanillaoutsider.vo_creative_fly_speed;
 
 import net.dasik.social.api.gamerule.DynamicGameRuleManager;
@@ -40,18 +41,17 @@ public final class CreativeFlySpeedRules {
         CATEGORY = DynamicGameRuleManager.registerCategory(
                 Identifier.fromNamespaceAndPath("vo_creative_fly_speed", "fly_speed")
         );
-        CREATIVE_FLY_SPEED = DynamicGameRuleManager.integerRule("vo_creative_fly_speed", CATEGORY, 1000)
+        CREATIVE_FLY_SPEED = DynamicGameRuleManager.integerRule("vo_creative_fly_speed:creative_fly_speed", CATEGORY, 1000)
                 .range(1, 100000)
                 .name("Creative Fly Speed")
-                .description("Multiplier for flying speed in Creative mode. Default is 1000 (1.0x).")
+                .description("Multiplier for flying speed in Creative mode in permille (1000 = 1.0x).")
                 .register();
-        SPECTATOR_FLY_SPEED = DynamicGameRuleManager.integerRule("vo_spectator_fly_speed", CATEGORY, 1000)
+        SPECTATOR_FLY_SPEED = DynamicGameRuleManager.integerRule("vo_creative_fly_speed:spectator_fly_speed", CATEGORY, 1000)
                 .range(1, 100000)
                 .name("Spectator Fly Speed")
-                .description("Multiplier for flying speed in Spectator mode. Default is 1000 (1.0x).")
+                .description("Multiplier for flying speed in Spectator mode in permille (1000 = 1.0x).")
                 .register();
     }
 
     private CreativeFlySpeedRules() {}
 }
-

@@ -5,5 +5,6 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
-- [x] **`1.0.0+build.3`** (SUPERSEDED)
+- [ ] **`1.1.0+26.1.2`** (2026-10-31) - Parity Update: Brigadier Command Suite & 5-Pillar Verification Harness
 - [x] **`1.0.0+26.1`** (SUPERSEDED) - Superseded by modern release 26.3
+- [x] **`1.0.0+build.3`** (SUPERSEDED)
