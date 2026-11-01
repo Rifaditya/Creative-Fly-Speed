@@ -27,6 +27,10 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "net.dasik.social:dasik-library:${project.dasik_library_version}"
 
+    // Optional GUI Dependencies (ModMenu API)
+    modCompileOnly "com.terraformersmc:modmenu:14.0.0-rc.2"
+    modLocalRuntime "com.terraformersmc:modmenu:14.0.0-rc.2"
+
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.10.0"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.10.0"
     testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.10.0"

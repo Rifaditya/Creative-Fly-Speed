@@ -20,6 +20,9 @@
         ],
         "client": [
             "net.vanillaoutsider.vo_creative_fly_speed.CreativeFlySpeedFabricClient"
+        ],
+        "modmenu": [
+            "net.vanillaoutsider.vo_creative_fly_speed.client.CreativeFlySpeedModMenu"
         ]
     },
     "mixins": [
@@ -31,6 +34,10 @@
         "java": ">=21",
         "fabric-api": "*",
         "dasik-library": ">=1.4.0"
+    },
+    "suggests": {
+        "yet-another-config-lib": "*",
+        "modmenu": "*"
     },
     "custom": {
         "modmenu": {
